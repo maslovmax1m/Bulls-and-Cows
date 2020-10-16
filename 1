@@ -1,0 +1,147 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int n, num_pc, num_u;
+
+int main()
+{
+	cout << "n = ";
+	cin >> n;
+	if (n == 2)
+	{
+		srand(time(NULL));
+		num_pc = rand() % 99 + 9;
+		//cout << num_pc << endl;
+		cout << "Input number: ";
+		cin >> num_u;
+		int num_pc1 = num_pc % 10;
+		int num_pc2 = num_pc / 10;
+		int num_u1 = num_u % 10;
+		int num_u2 = num_u / 10;
+		while (num_u != num_pc) {
+			if ((num_pc1 == num_u1 || num_pc2 == num_u2) && (num_pc2 == num_u1 || num_pc1 == num_u2)) {
+				cout << "1 Bull and 1 Cow" << endl;
+				cin >> num_u;
+				num_u1 = num_u % 10;
+				num_u2 = num_u / 10;
+			}
+			if (num_pc1 == num_u2 && num_pc2 == num_u1) {
+				cout << "0 Bulls and 2 Cows" << endl;
+				cin >> num_u;
+				num_u1 = num_u % 10;
+				num_u2 = num_u / 10;
+			}
+			if ((num_pc1 != num_u2 && num_pc2 == num_u1) || (num_pc1 == num_u2 && num_pc2 != num_u1)) {
+				cout << "0 Bulls and 1 Cow" << endl;
+				cin >> num_u;
+				num_u1 = num_u % 10;
+				num_u2 = num_u / 10;
+			}
+			if ((num_pc1 == num_u1 && num_pc2 != num_u2) || (num_pc2 == num_u2 && num_pc1 != num_u1)) {
+				cout << "1 Bull and 0 Cows" << endl;
+				cin >> num_u;
+				num_u1 = num_u % 10;
+				num_u2 = num_u / 10;
+			}
+			if (num_pc1 != num_u1 && num_pc1 != num_u2 && num_pc2 != num_u2 && num_pc2 != num_u1) {
+				cout << "0 Bulls and 0 Cows" << endl;
+				cin >> num_u;
+				num_u1 = num_u % 10;
+				num_u2 = num_u / 10;
+			}
+		}
+		cout << "2 Bulls" << endl;
+		cout << "### YOU WIN! ###" << endl;
+	}
+	if (n == 3)
+	{
+		
+	}
+	if (n == 4)
+	{
+		int a, b, ran[4], i, j, c[4], bull, cow;  
+		bool f = 0;
+
+		while (true) {
+			i = 0;
+			srand(time(NULL));
+			
+			while (i < 4) {
+				ran[i] = rand() % 10;
+				for (j = 0; j < i; j++) {
+					if (ran[i] == ran[j]) {
+						f = 1;
+						break;
+					}
+				}
+				if (f == 0) {
+					i++;
+				}
+				f = 0;
+			}
+
+			int s = 0; 
+			while (true) {
+				bull = 0;
+				cow = 0;
+				cout << s + 1 << " - ";
+				s++;
+				cin >> a;
+				if (a == 0)
+					break;
+				for (i = 3; i >= 0; i--) {
+					b = a % 10;
+					c[i] = b;
+					a = (a - b) / 10;
+				}
+				for (i = 0; i < 4; i++) {
+					if (c[i] == ran[i]) {
+						bull++;
+					}
+				}
+				for (i = 0; i < 4; i++) {
+					for (j = 0; j < 4; j++) {
+						if (c[i] == ran[j]) {
+							cow++;
+						}
+					}
+				}
+				cout << bull << "b " << cow - bull << "c" << endl << endl;
+				if (bull == 4) {
+					cout << "You win ";
+					break;
+				}
+			}
+			for (i = 0; i < 4; i++) {
+				cout << ran[i];
+			}
+			cout << endl << "Else? 1-yes 0 - no" << endl;
+			cin >> f;
+			if (f == 0) {
+				return 0;
+			}
+			f = 0;
+		}
+	}
+	if (n == 5)
+	{
+		srand(time(NULL));
+		num_pc = rand() % 99999 + 999;
+	}
+	
+
+	
+
+
+
+	
+
+	
+
+
+
+	return 0;
+}
